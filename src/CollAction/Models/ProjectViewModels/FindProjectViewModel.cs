@@ -11,6 +11,6 @@ namespace CollAction.Models
         [Display(Name = "Search Text")]
         [Required(ErrorMessage = "Please enter a search term")]
         public string SearchText { get; set; }
-        public List<Project> Projects { get; set; }
+        public List<ProjectCardViewModel> Projects { get; set; }
     }
 }

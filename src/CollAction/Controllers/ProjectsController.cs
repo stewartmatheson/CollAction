@@ -39,16 +39,22 @@ namespace CollAction.Controllers
         public async Task<IActionResult> Find(FindProjectViewModel model)
         {
             if (model.SearchText == null) {
-                return View(new FindProjectViewModel { Projects = new List<Project>() });
+                return View(new FindProjectViewModel { Projects = new List<ProjectCardViewModel>() });
             }
 
             // TODO: Deal with different languages! So far only english handled, also migrations will be needed for other languages too.
 
             string[] searchTerms = GetValidSearchTerms(model.SearchText);
-            model.Projects = new List<Project>();
+            model.Projects = new List<ProjectCardViewModel>();
             if (searchTerms.Length != 0) {
                 string language = "english";
-                model.Projects = await BuildFullTextSearchQuery<Project>(_context.Project, searchTerms, language).ToListAsync();
+                List<Project> projects = await BuildFullTextSearchQuery<Project>(_context.Project, searchTerms, language)
+                    .ToListAsync();
+
+                model.Projects = projects.Select(p => {
+                    ProjectCardViewModel pcvm = p;
+                    return pcvm;
+                }).ToList();
             }
             
             return View(model);
