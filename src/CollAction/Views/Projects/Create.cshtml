@@ -1,7 +1,5 @@
 @using Microsoft.AspNetCore.Mvc.Localization
-@using Newtonsoft.Json
-@using Newtonsoft.Json.Schema;
-@using Newtonsoft.Json.Schema.Generation;
+@using CollAction.MetaForm
 
 @inject IViewLocalizer Localizer
 
@@ -11,25 +9,7 @@
     ViewData["Title"] = Localizer["Create"];
 }
 
-
-@{
-    // JSchemaGenerator generator = new JSchemaGenerator();
-    // JSchema schema = generator.Generate(typeof(CreateProjectViewModel));
-    var schema = new Object();
-}
-
-<script type="application/javascript">
-    window.onload = () => {
-        const formData = @Html.Raw(JsonConvert.SerializeObject(Model));
-        //const formMetaData = @Html.Raw(schema);
-        const formMetaData = {}
-        window.CollAction.forms['Project'].boom(formData, formMetaData, 'ProjectForm');
-    };
-</script>
-
-<div id="ProjectForm">
-
-</div>
+@Renderer.Form(typeof(CreateProjectViewModel))
 
 <h2>@Localizer["Create"]</h2>
 
