@@ -79,6 +79,13 @@ namespace CollAction.Models
             }                    
         }
 
+        public string DisplayName 
+        {
+            get {
+                return Project.Owner.Email.Split('@')[0];
+            }
+        }
+
         public static async Task<List<DisplayProjectViewModel>> GetViewModelsWhere(ApplicationDbContext context, Expression<Func<Project, bool>> WhereExpression)
         {
             return await context.Projects

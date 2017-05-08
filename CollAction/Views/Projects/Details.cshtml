@@ -78,7 +78,7 @@
             <div class="col-md-3 col-xs-12" >
                 <div id="project-starter-avatar"></div>
                 <h3>Project Starter</h3>
-                <p>@Model.Project.Owner.FirstName @Model.Project.Owner.LastName</p>
+                <p>@Model.Project.Owner.FirstName @Model.Project.Owner.LastName @Model.DisplayName</p>
             </div> 
 
             <div class="col-md-offset-3 col-md-3 col-xs-12" >
@@ -89,11 +89,13 @@
         <div class="row">
             <hr />
             <div class="col-xs-4">
-                <p>@Html.DisplayNameFor(model => model.Project.Proposal)</p>
-                <p>@Html.DisplayFor(model => model.Project.Proposal)</p>
+                <strong>
+                    <h5>@Html.DisplayNameFor(model => model.Project.Proposal)</h5>
+                    <p>@Html.DisplayFor(model => model.Project.Proposal)</p>
+                </strong>
             </div>
             <div class="col-xs-8">
-                <p>@Html.DisplayNameFor(model => model.Project.Goal)</p>
+                <h5>@Html.DisplayNameFor(model => model.Project.Goal)</h5>
                 <p>@Html.DisplayFor(model => model.Project.Goal)</p>
             </div>
         </div> 
